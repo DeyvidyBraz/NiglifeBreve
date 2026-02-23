@@ -1,0 +1,19 @@
+{
+  "functions": [
+    {
+      "source": "apps/firebase-functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "apps/firebase-functions/firestore.rules",
+    "indexes": "apps/firebase-functions/firestore.indexes.json"
+  }
+}

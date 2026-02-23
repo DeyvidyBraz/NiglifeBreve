@@ -1,0 +1,13 @@
+{
+  "name": "niglife-breve",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/firebase-functions"
+  ],
+  "scripts": {
+    "serve:web": "python3 -m http.server 5173 --directory apps/web",
+    "check:firebase": "npm run check --workspace apps/firebase-functions",
+    "deploy:functions": "npm run deploy --workspace apps/firebase-functions"
+  }
+}

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>NIGLIFE - Em breve</title>
+    <meta
+      name="description"
+      content="Lançamento em 2027. Assine para receber informações e ser o primeiro a saber do lançamento."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="nav">
+          <a class="brand" href="#" aria-label="Início">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+              <strong>NIGLIFE - DY</strong>
+              <span>Festas • Eventos • Encontros</span>
+            </div>
+          </a>
+
+          <div class="pill" aria-label="Status de lançamento">
+            <span class="dot" aria-hidden="true"></span>
+            <span><b>Lançamento</b> em 2027</span>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="container">
+          <section class="hero" aria-labelledby="title">
+            <div class="kicker">
+              <span class="dot" aria-hidden="true"></span>
+              <span>Em breve • <b>2027</b></span>
+            </div>
+
+            <h1 id="title">
+              <span class="grad">O mundo se encontrará aqui,</span><br />
+              e a forma como você aproveita a vida<br />
+              nunca mais será a mesma.
+            </h1>
+
+            <p class="lead">
+              Uma rede social que irá te arrastar para uma vida social no mundo real,
+              com diversão, risadas e criação de memórias para a vida toda.
+            </p>
+
+            <div class="ctaRow" aria-label="Benefícios">
+              <span class="pill" title="Experiência ao vivo">🎉 Viver de verdade</span>
+              <span class="pill" title="Conheça pessoas">🤝 Diversão e conexões</span>
+              <span class="pill" title="Momentos inesquecíveis">✨ Memórias para vida toda</span>
+            </div>
+
+            <p class="fineprint" style="margin-top: 18px">
+              Quer ser <b>o primeiro</b> a saber? Assine abaixo para receber novidades do lançamento.
+            </p>
+          </section>
+
+          <aside class="card signup" aria-label="Cadastro para novidades">
+            <h2>Assine para receber informações</h2>
+            <p>Lançamento em <b>2027</b>. Deixe seus dados para receber atualizações e acesso antecipado.</p>
+
+            <form id="waitlist-form" novalidate>
+              <div class="field">
+                <label for="name">Seu nome</label>
+                <input id="name" name="name" type="text" placeholder="Ex.: Ana" autocomplete="name" required />
+                <p id="name-error" class="field-error" role="alert"></p>
+              </div>
+
+              <div class="field">
+                <label for="email">Seu melhor e-mail</label>
+                <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required />
+                <p id="email-error" class="field-error" role="alert"></p>
+              </div>
+
+              <div class="field">
+                <label for="phone">WhatsApp / Celular</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="(11) 99999-9999"
+                  inputmode="numeric"
+                  autocomplete="tel-national"
+                  maxlength="15"
+                  required
+                />
+                <p id="phone-error" class="field-error" role="alert"></p>
+              </div>
+
+              <div class="honeypot-wrap" aria-hidden="true">
+                <label class="sr-only" for="website">Website</label>
+                <input id="website" name="website" class="honeypot" type="text" autocomplete="off" tabindex="-1" />
+              </div>
+
+              <button id="submit-button" class="btn" type="submit">Quero ser o primeiro</button>
+
+              <p class="fineprint">
+                Sem spam. Só novidades do lançamento. Ao enviar, você concorda em receber comunicações.
+              </p>
+
+              <p id="form-error" class="form-message form-error" role="alert"></p>
+              <p id="form-success" class="form-message form-success" role="status" aria-live="polite"></p>
+            </form>
+          </aside>
+
+          <section class="card" aria-label="Privacidade" id="privacidade">
+            <div class="grid">
+              <div class="feature">
+                <h3><span class="icon" aria-hidden="true">🔒</span> Privacidade</h3>
+                <p>
+                  Usaremos seu e-mail e celular apenas para avisar sobre o lançamento em 2027 e novidades relacionadas.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="./config.js"></script>
+
+    <script type="module">
+      window.__firebaseReadyPromise = (async () => {
+        try {
+          const [{ initializeApp }, { getFirestore, collection, addDoc, serverTimestamp }] = await Promise.all([
+            import("https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"),
+            import("https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js")
+          ]);
+
+          window.__firebaseApp = initializeApp({
+            apiKey: "AIzaSyC3EKTB2AqXUOGicnD2LiOFl6qseG7Ajyk",
+            authDomain: "apnovo-b1bdd.firebaseapp.com",
+            projectId: "apnovo-b1bdd",
+            storageBucket: "apnovo-b1bdd.firebasestorage.app",
+            messagingSenderId: "868326314281",
+            appId: "1:868326314281:web:27bef6674e41b4392ae738"
+          });
+
+          window.__db = getFirestore(window.__firebaseApp);
+          window.__firestoreFns = { collection, addDoc, serverTimestamp };
+          return true;
+        } catch (error) {
+          window.__db = null;
+          window.__firestoreFns = null;
+          console.error("Falha ao inicializar Firebase:", error);
+          return false;
+        }
+      })();
+    </script>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
