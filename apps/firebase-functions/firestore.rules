@@ -1,6 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function validWaitlistPayload() {
+      return request.resource.data.keys().hasOnly(['name', 'email', 'phone', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 5
+        && request.resource.data.email.size() <= 254
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 8
+        && request.resource.data.phone.size() <= 20;
+    }
+
+    // Nova coleção desta landing.
+    match /niglife_waitlist_coming_soon/{docId} {
+      allow create: if validWaitlistPayload();
+      allow read, update, delete: if false;
+    }
+
+    // Coleção legada (mantida para não quebrar fluxos antigos).
+    match /waitlist/{docId} {
+      allow create: if validWaitlistPayload();
+      allow read, update, delete: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

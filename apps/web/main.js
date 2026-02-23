@@ -217,8 +217,6 @@ async function firebaseSubmit(payload) {
     name: payload.name,
     email: payload.email,
     phone: payload.phone,
-    phoneFormatted: formatPhoneInput(payload.phone),
-    source: payload.source,
     createdAt: serverTimestamp()
   });
 
@@ -249,6 +247,11 @@ async function submitWaitlist(payload) {
       return await firebaseSubmit(payload);
     } catch (error) {
       console.error("Falha no submit Firebase:", error);
+
+      if (String(error?.code || "") === "permission-denied") {
+        return { ok: false, status: 403, code: "PERMISSION_DENIED", data: {} };
+      }
+
       return { ok: false, status: 500, code: "FIREBASE_SUBMIT_ERROR", data: {} };
     }
   }
@@ -302,6 +305,12 @@ async function handleSubmit(event) {
       if (response.data?.errors?.email) setFieldError("email", response.data.errors.email);
       if (response.data?.errors?.phone) setFieldError("phone", response.data.errors.phone);
       if (response.data?.errors?.contact) errors.form.textContent = response.data.errors.contact;
+      return;
+    }
+
+    if (response.status === 403 && response.code === "PERMISSION_DENIED") {
+      errors.form.textContent =
+        "Sem permissão para gravar no Firestore. Revise as regras da coleção niglife_waitlist_coming_soon.";
       return;
     }
 
