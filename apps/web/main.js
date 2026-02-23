@@ -285,7 +285,7 @@ async function handleSubmit(event) {
           "Cadastro confirmado! (Modo local de teste em file://). Para gravar no Firebase, use http://localhost ou GitHub Pages."
         );
       } else {
-        setSuccessMessage("Cadastro confirmado! Vamos avisar você em primeira mão.");
+        setSuccessMessage("Cadastro confirmado! Vamos avisar em primeira mão.");
       }
       return;
     }

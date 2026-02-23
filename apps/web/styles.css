@@ -25,7 +25,7 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -33,11 +33,15 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial,
     "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--fg);
+  background-color: var(--bg1);
   background:
     radial-gradient(1200px 600px at 20% 0%, rgba(168, 85, 247, 0.28), transparent 65%),
     radial-gradient(1000px 600px at 90% 20%, rgba(245, 158, 11, 0.18), transparent 60%),
     radial-gradient(900px 650px at 50% 110%, rgba(34, 197, 94, 0.1), transparent 60%),
-    linear-gradient(180deg, var(--bg0), var(--bg1));
+    linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, var(--bg1) 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: auto, auto, auto, 100% 100%;
+  background-attachment: scroll;
   overflow-x: hidden;
 }
 
@@ -332,17 +336,35 @@ input[aria-invalid="true"] {
   margin: 0 !important;
 }
 
-.field-error,
-.form-error {
+.field-error {
   color: #ff4d4f;
 }
 
-.form-success {
-  color: rgba(34, 197, 94, 0.95);
+.form-message {
+  display: none;
+  margin-top: 6px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-.form-success:empty {
-  display: none;
+.form-message:not(:empty) {
+  display: block;
+}
+
+.form-success {
+  color: #7cf0be;
+  border-color: rgba(85, 232, 158, 0.55);
+  background: linear-gradient(180deg, rgba(7, 74, 49, 0.62), rgba(3, 46, 30, 0.65));
+}
+
+.form-error {
+  color: #ffb3b3;
+  border-color: rgba(255, 92, 92, 0.62);
+  background: linear-gradient(180deg, rgba(98, 18, 18, 0.58), rgba(64, 11, 11, 0.62));
 }
 
 .grid {
